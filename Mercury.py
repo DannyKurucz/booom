@@ -15,7 +15,7 @@ try:
 	import wget
 	import socket
 	import urllib
-	import urllib2
+	import urllib3
 	import smtplib
 	import random
 	import hashlib
@@ -27,7 +27,7 @@ try:
 	from selenium import webdriver
 	from colorama import init, Fore, Back, Style
 	from pygoogling.googling import GoogleSearch
-	from urllib2 import Request, urlopen, URLError, HTTPError
+	from urllib3 import Request, urlopen, URLError, HTTPError
 except ImportError: #If you dont have the required modules this error will help install them for you
 	print ('\033[4m Do you have all of the needed Modules ?')
 	time.sleep(1)
@@ -38,7 +38,7 @@ except ImportError: #If you dont have the required modules this error will help 
 		os.system('pip install selenium')
 		os.system('pip install colorama')
 		os.system('pip install requests')
-		os.system('pip install urllib2')
+		os.system('pip install urllib3')
 		os.system('pip install os')
 		os.system('pip install urllib')
 		os.system('pip install pygoogling')
@@ -101,8 +101,8 @@ def clear():
 	os.system('clear')
 	os.system('cls')
 def space():
-	print ' '
-	print ' '	
+	print (' ')
+	print (' ')
 
 def agreement():
  afile = open(x+'\Extra\Mercury.txt','r+')
@@ -195,7 +195,7 @@ def readme():
 	mainmenu()
 def sub_link():
 	url = raw_input(Fore.CYAN + 'Enter an url: ')
-	website = urllib2.urlopen(url)
+	website = urllib3.urlopen(url)
 	html = website.read()
 	links = re.findall('"((http|ftp)s?://.*?)"', html)
 	space()
@@ -204,8 +204,8 @@ def sub_link():
 		for x in links:
 			website_sub = x[0]
 			print (Fore.GREEN + website_sub)
-			website = urllib2.urlopen(x[count])
-	except urllib2.HTTPError:
+			website = urllib3.urlopen(x[count])
+	except urllib3.HTTPError:
 		pass
 
 	extra_long()
@@ -578,7 +578,7 @@ def sourcecode():
 		URL1=raw_input(Fore.CYAN + 'Enter An Url ') #Url
 		html1 = open(file, 'a+') #Writes The File
 		html = open(file, 'w')
-		response = urllib2.urlopen(URL1) #Opens Url
+		response = urllib3.urlopen(URL1) #Opens Url
 		page_source = response.read() #Reads URL
 		space()
 		print >>html,  page_source #Change to python3 Syntax
@@ -601,13 +601,13 @@ def sourcecode():
 def siteexists():
     try:
         site = raw_input(Fore.CYAN + 'Enter a website: ')
-        urllib2.urlopen(site)
-    except urllib2.HTTPError, e:
+        urllib3.urlopen(site)
+    except urllib3.HTTPError, e:
         print (Fore.RED + site  + ' Does not exist')
         print(e.code)
         quick()
         mainmenu()
-    except urllib2.URLError, e:
+    except urllib3.URLError, e:
         print (Fore.RED + site + ' Does not exist')
         quick()
         mainmenu()
@@ -774,7 +774,7 @@ def networksweb():
 		    		status = "Not connected" #if you cant connect then:
 		    		print (Fore.RED+'Attempt '+ Fore.RED +str( count3 )+ Fore.RED +  ' At Host: '+ Fore.RED +url3 + Fore.RED + ': OFFLINE')
 				print (status)
-			except urllib2.URLError:
+			except urllib3.URLError:
 		    		status = "Not connected" #if you cant connect then:
 		    		print (Fore.RED+'Attempt '+ Fore.RED +str( count3 )+ Fore.RED +  ' At Host: '+ Fore.RED +url3 + Fore.RED + ': OFFLINE')
 				print (status)
@@ -1098,7 +1098,7 @@ def mainmenu():
 		mainmenu()
 def InternetCheck():
 	try:
-		urllib2.urlopen('https://www.google.com')
+		urllib3.urlopen('https://www.google.com')
 	except:
 		print (Fore.RED + 'There in no Internet connection...')
 		long()
@@ -1124,3 +1124,4 @@ try:
 	mainmenu()
 except KeyboardInterrupt:
 	mainmenu()
+
